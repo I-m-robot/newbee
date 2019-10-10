@@ -63,11 +63,49 @@ export default new Vuex.Store({
             }
           })
     },
+    /**
+     * 
+     * @param {*} context 
+     * @param {sting}} n _id
+     */
     updateMatter(context,n){
+      const url = '/api/matter/update'
+      axios.post(url,{
+              _id:n,
+            })
+           .then(res=>{
+            context.state.err = res.err;
+            context.state.msg = msg;
+            
+            if(res.err!==0){
+              return 
+            }else{
+              getMatter(context);
+            }
 
+           })
     },
+    /**
+     * 
+     * @param {*} context 
+     * @param {string} n _id 
+     */
     delectMatter(context,n){
-      
+      const url = '/api/matter/del'
+      axios.post(url,{
+              _id:n,
+            })
+           .then(res=>{
+            context.state.err = res.err;
+            context.state.msg = msg;
+            
+            if(res.err!==0){
+              return 
+            }else{
+              getMatter(context);
+            }
+
+           })
     }
   },
   getters:{
